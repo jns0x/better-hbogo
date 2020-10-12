@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "puppeteer": "ts-node ./puppeteer/index.ts"
+    "scrape": "ts-node ./puppeteer/index.ts"
   },
   "author": "PJ&MJ",
   "license": "ISC",
