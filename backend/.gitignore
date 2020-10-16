@@ -8,4 +8,7 @@
 .DS_Store
 /migrations/*
 
-.env
+dist/
+src/generated/
+
+*.env*

@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// The underlying table does not contain a valid unique identifier and can therefore currently not be handled.
+model genre {
+  id   String @id
+  name String
+}
+
+// The underlying table does not contain a valid unique identifier and can therefore currently not be handled.
+model image {
+  id          String  @id
+  img_190     String?
+  img_262     String?
+  img_561     String?
+  img_800     String?
+  img_1080    String?
+  img_1280    String?
+  title_image String?
+}
+
+// The underlying table does not contain a valid unique identifier and can therefore currently not be handled.
+model video {
+  id             Int     @id
+  external_id    Int?
+  imageId        String?
+  title          String
+  year           String?
+  type           String?
+  availableDate  Int?
+  engTitle       String?
+  original_title String?
+  imdb_rate      Float?
+  age_rate       String?
+  synopsis       String?
+}
+
+// The underlying table does not contain a valid unique identifier and can therefore currently not be handled.
+model video_genre {
+  id      String @id
+  movieId Int
+  genreId String
+}

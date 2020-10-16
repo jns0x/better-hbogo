@@ -7,7 +7,7 @@
     "preserveConstEnums": true,
     "declaration": true,
     "target": "es5",
-    "lib": ["es6", "dom"],
+    "lib": ["esnext", "dom"],
     "types": ["node"],
     "outDir": "./dist",
     "noUnusedLocals": true,
@@ -16,7 +16,11 @@
     "noUnusedParameters": false,
     "pretty": true,
     "noFallthroughCasesInSwitch": true,
-    "allowUnreachableCode": false
+    "allowUnreachableCode": false,
+    "strict": true,
+    "esModuleInterop": true,
+    "downlevelIteration": true
   },
+  "exclude": ["node_modules"],
   "include": ["src", "node_modules/puppeteer-tsd/src/index.d.ts"]
 }

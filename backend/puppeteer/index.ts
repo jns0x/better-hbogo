@@ -5,21 +5,24 @@ const url = "https://hbogo.pl";
 
 (async () => {
   try {
-    const data = { data: [...(await crawler(`${url}/series`))] };
+    const result = await crawler(`${url}/series`);
+    const date = new Date().getTime();
 
-    fs.writeFile(
-      "./migrations/db.json",
-      JSON.stringify(data),
-      "utf8",
-      function (err) {
-        if (err) {
-          return console.log(err);
+    Object.keys(result).forEach((key) => {
+      fs.writeFile(
+        `./migrations/${key}_${date}.json`,
+        JSON.stringify(result[key]),
+        "utf8",
+        function (err) {
+          if (err) {
+            return console.log(err);
+          }
+          console.log(
+            "The data has been scraped and saved successfully! View it at './migrations/'"
+          );
         }
-        console.log(
-          "The data has been scraped and saved successfully! View it at './data.json'"
-        );
-      }
-    );
+      );
+    });
   } catch (err) {
     console.error(err);
   }
