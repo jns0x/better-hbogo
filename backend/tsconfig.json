@@ -19,7 +19,9 @@
     "allowUnreachableCode": false,
     "strict": true,
     "esModuleInterop": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
   },
   "exclude": ["node_modules"],
   "include": ["src", "node_modules/puppeteer-tsd/src/index.d.ts"]

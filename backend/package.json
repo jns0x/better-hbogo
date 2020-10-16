@@ -4,22 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server",
+    "start": "ts-node src/index.ts",
+    "watch": "tsc -w",
+    "dev": "nodemon dist/index.js",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
-    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server",
+    "dev:prisma": "ts-node-dev --no-notify --respawn --transpileOnly src/server",
     "scrape": "ts-node ./puppeteer/index.ts"
   },
   "author": "PJ&MJ",
   "license": "ISC",
   "devDependencies": {
     "@prisma/cli": "^2.8.1",
-    "@types/node": "^14.11.8",
+    "@types/express": "^4.17.8",
+    "@types/express-session": "^1.17.0",
+    "@types/node": "^14.11.10",
     "@types/puppeteer": "^3.0.2",
-    "nodemon": "^2.0.4",
+    "class-validator": "^0.12.2",
+    "nodemon": "^2.0.5",
     "puppeteer": "^5.3.1",
     "ts-node": "^9.0.0",
     "ts-node-dev": "^1.0.0-pre.65",
@@ -29,9 +34,17 @@
   "dependencies": {
     "@nexus/schema": "^0.16.0",
     "@prisma/client": "^2.8.1",
+    "apollo-server-express": "^2.18.2",
+    "express": "^4.17.1",
     "graphql": "^15.3.0",
     "graphql-yoga": "^1.18.3",
     "nexus": "^0.30.1",
-    "nexus-plugin-prisma": "^0.22.0"
+    "nexus-plugin-prisma": "^0.22.0",
+    "pg": "^8.4.1",
+    "type-graphql": "^1.1.0",
+    "typeorm": "^0.2.28"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
