@@ -1,9 +1,9 @@
 import "reflect-metadata";
+import "dotenv-safe/config";
 import express from "express";
 import cors from "cors";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
-// import { HelloResolver } from "./resolvers/hello";
 import { createConnection } from "typeorm";
 import { Video } from "./entities/Video";
 import { VideoResolver } from "./resolvers/video";
@@ -40,7 +40,7 @@ const main = async () => {
     app,
     cors: false,
   });
-  app.listen(4000, () => {
+  app.listen(process.env.PORT, () => {
     console.log("server started at localhost:4000");
   });
 };

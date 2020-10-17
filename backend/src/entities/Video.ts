@@ -36,11 +36,11 @@ export class Video extends BaseEntity {
   @Column()
   engTitle!: string;
 
-  @Field()
+  @Field(() => String, { nullable: true })
   @Column()
   original_title!: string;
 
-  @Field()
+  @Field(() => String, { nullable: true })
   @Column()
   imdb_rate?: number;
 
@@ -48,7 +48,7 @@ export class Video extends BaseEntity {
   @Column()
   age_rate?: string;
 
-  @Field()
+  @Field(() => String, { nullable: true })
   @Column()
   synopsis?: string;
 }

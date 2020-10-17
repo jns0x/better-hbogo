@@ -1,5 +1,9 @@
-const Index = ()=>{
-    return <div>test index</div>
-}
+import { useVideosQuery } from "../generated/graphql";
 
-export default Index
+const Index = () => {
+  const { data } = useVideosQuery();
+  console.log(data);
+  return <div>test index</div>;
+};
+
+export default Index;

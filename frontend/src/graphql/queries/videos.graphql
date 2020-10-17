@@ -1,0 +1,16 @@
+query Videos {
+  videos {
+    id
+    external_id
+    imageId
+    title
+    year
+    type
+    # availableDate
+    engTitle
+    original_title
+    imdb_rate
+    age_rate
+    synopsis
+  }
+}
