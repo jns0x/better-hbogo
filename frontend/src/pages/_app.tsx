@@ -2,25 +2,20 @@ import { AppProps /*, AppContext */ } from "next/app";
 import "normalize.css";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { GlobalStyles } from "../global-styles";
-import { ThemeProvider, DefaultTheme } from "styled-components";
+import { ThemeProvider } from "styled-components";
+import { darkTheme } from "../theme";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
 });
 
-const theme: DefaultTheme = {
-  colors: {
-    main: "#fff",
-  },
-};
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <ApolloProvider client={client}>
         <GlobalStyles />
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={darkTheme}>
           <Component {...pageProps} />
         </ThemeProvider>
       </ApolloProvider>

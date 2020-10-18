@@ -1,26 +1,38 @@
 import React from "react";
-import { Logo } from "components/header/header.styles";
+import {
+  Logo,
+  Nav,
+  Container,
+  Group,
+  Item,
+} from "components/header/header.styles";
+import Button from "components/button/button";
 
 const Header: React.FC = () => {
   return (
-    <nav>
-      <div>
-        container
-        <Logo>logo</Logo>
-        <div>
-          <button>SERIES</button>
-          <button>MOVIES</button>
-          <button>KIDS</button>
-          <button>SCHEDULE</button>
-          <button>search</button>
-        </div>
-        <div>
-          user
-          <button>Registration</button>
-          <button>Login</button>
-        </div>
-      </div>
-    </nav>
+    <Nav>
+      <Container>
+        <Group>
+          <Logo />
+          <Group>
+            <Item>SERIES</Item>
+            <Item>MOVIES</Item>
+            <Item>KIDS</Item>
+            <Item>SCHEDULE</Item>
+            <Item>
+              <img src="/images/search.svg" alt="search" height="16px" />
+            </Item>
+          </Group>
+        </Group>
+
+        <Group>
+          <Button color="blue" style={{ marginRight: "5px" }}>
+            Registration
+          </Button>
+          <Button>Login</Button>
+        </Group>
+      </Container>
+    </Nav>
   );
 };
 

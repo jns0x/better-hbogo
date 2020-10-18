@@ -1,15 +1,17 @@
-import { useVideosQuery } from "../generated/graphql";
+// import { useVideosQuery } from "../generated/graphql";
 import Header from "components/header";
+import React from "react";
+import Footer from "components/footer/footer";
 // import { withApollo } from "lib/withApollo";
 
 const Index = () => {
-  const { data } = useVideosQuery();
-  console.log(data);
+  // const { data } = useVideosQuery();
 
   return (
     <div>
       <Header />
-      test index
+      <main style={{ margin: "50px auto" }}>main stuff</main>
+      <Footer />
     </div>
   );
 };
