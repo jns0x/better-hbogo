@@ -4,6 +4,7 @@ const colors = {
   white: "#fff",
   black: "#000",
   gray: "#999",
+  darkGray: "#242424",
   orange: "#e1981a",
   lightOrange: "#fab133",
   blue: "#059",

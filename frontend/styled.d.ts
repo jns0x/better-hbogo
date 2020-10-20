@@ -1,12 +1,21 @@
 // import original module declarations
 import "styled-components";
-
+import type {} from "styled-components/cssprop";
 // and extend them!
+// import * as types from "styled-components/cssprop";
+
+// Add support for css prop
+// declare namespace React {
+//   interface DOMAttributes<T> {
+//     css?: any;
+//   }
+// }
 
 type Colors =
   | "white"
   | "black"
   | "gray"
+  | "darkGray"
   | "orange"
   | "lightOrange"
   | "blue"
