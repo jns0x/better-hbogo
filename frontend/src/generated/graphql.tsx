@@ -13,7 +13,33 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
+  videos: PaginatedVideos;
+  video?: Maybe<Video>;
+  series: Array<Video>;
+};
+
+
+export type QueryVideosArgs = {
+  type?: Maybe<Scalars['String']>;
+  year?: Maybe<Scalars['String']>;
+  imdb_rate?: Maybe<Scalars['String']>;
+  age_rate?: Maybe<Scalars['String']>;
+  availableDate?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<OrderBy>;
+  order?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  cursor?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryVideoArgs = {
+  id: Scalars['Int'];
+};
+
+export type PaginatedVideos = {
+  __typename?: 'PaginatedVideos';
   videos: Array<Video>;
+  hasMore: Scalars['Boolean'];
 };
 
 export type Video = {
@@ -30,34 +56,69 @@ export type Video = {
   imdb_rate?: Maybe<Scalars['String']>;
   age_rate?: Maybe<Scalars['String']>;
   synopsis?: Maybe<Scalars['String']>;
+  image?: Maybe<Image>;
 };
 
-export type VideosQueryVariables = Exact<{ [key: string]: never; }>;
+export type Image = {
+  __typename?: 'Image';
+  id: Scalars['String'];
+  img_190: Scalars['String'];
+  img_262: Scalars['String'];
+  img_561: Scalars['String'];
+  img_800: Scalars['String'];
+  img_1080: Scalars['String'];
+  img_1280: Scalars['String'];
+  title_image: Scalars['String'];
+};
+
+/** The basic directions */
+export enum OrderBy {
+  Year = 'year',
+  AgeRate = 'age_rate',
+  ImdbRate = 'imdb_rate',
+  AvailableDate = 'availableDate'
+}
+
+export type VideosQueryVariables = Exact<{
+  type?: Maybe<Scalars['String']>;
+  year?: Maybe<Scalars['String']>;
+  imdb_rate?: Maybe<Scalars['String']>;
+  age_rate?: Maybe<Scalars['String']>;
+  availableDate?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<OrderBy>;
+  order?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+}>;
 
 
 export type VideosQuery = (
   { __typename?: 'Query' }
-  & { videos: Array<(
-    { __typename?: 'Video' }
-    & Pick<Video, 'id' | 'external_id' | 'imageId' | 'title' | 'year' | 'type' | 'engTitle' | 'original_title' | 'imdb_rate' | 'age_rate' | 'synopsis'>
-  )> }
+  & { videos: (
+    { __typename?: 'PaginatedVideos' }
+    & { videos: Array<(
+      { __typename?: 'Video' }
+      & Pick<Video, 'id' | 'external_id' | 'imageId' | 'title' | 'year' | 'type' | 'engTitle' | 'original_title' | 'imdb_rate' | 'age_rate' | 'synopsis'>
+    )> }
+  ) }
 );
 
 
 export const VideosDocument = gql`
-    query Videos {
-  videos {
-    id
-    external_id
-    imageId
-    title
-    year
-    type
-    engTitle
-    original_title
-    imdb_rate
-    age_rate
-    synopsis
+    query Videos($type: String, $year: String, $imdb_rate: String, $age_rate: String, $availableDate: Int, $orderBy: orderBy, $order: String, $limit: Int) {
+  videos(type: $type, year: $year, imdb_rate: $imdb_rate, age_rate: $age_rate, availableDate: $availableDate, orderBy: $orderBy, order: $order, limit: $limit) {
+    videos {
+      id
+      external_id
+      imageId
+      title
+      year
+      type
+      engTitle
+      original_title
+      imdb_rate
+      age_rate
+      synopsis
+    }
   }
 }
     `;
@@ -74,6 +135,14 @@ export const VideosDocument = gql`
  * @example
  * const { data, loading, error } = useVideosQuery({
  *   variables: {
+ *      type: // value for 'type'
+ *      year: // value for 'year'
+ *      imdb_rate: // value for 'imdb_rate'
+ *      age_rate: // value for 'age_rate'
+ *      availableDate: // value for 'availableDate'
+ *      orderBy: // value for 'orderBy'
+ *      order: // value for 'order'
+ *      limit: // value for 'limit'
  *   },
  * });
  */

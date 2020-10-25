@@ -1,16 +1,36 @@
-query Videos {
-  videos {
-    id
-    external_id
-    imageId
-    title
-    year
-    type
-    # availableDate
-    engTitle
-    original_title
-    imdb_rate
-    age_rate
-    synopsis
+query Videos(
+  $type: String
+  $year: String
+  $imdb_rate: String
+  $age_rate: String
+  $availableDate: Int
+  $orderBy: orderBy
+  $order: String
+  $limit: Int
+) {
+  videos(
+    type: $type
+    year: $year
+    imdb_rate: $imdb_rate
+    age_rate: $age_rate
+    availableDate: $availableDate
+    orderBy: $orderBy
+    order: $order
+    limit: $limit
+  ) {
+    videos {
+      id
+      external_id
+      imageId
+      title
+      year
+      type
+      # availableDate
+      engTitle
+      original_title
+      imdb_rate
+      age_rate
+      synopsis
+    }
   }
 }

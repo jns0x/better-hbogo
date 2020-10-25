@@ -7,3 +7,5 @@ generates:
       - "typescript"
       - "typescript-operations"
       - "typescript-react-apollo"
+    enumValues:
+      orderBy: "src/graphql/enums/orderBy.tsx"

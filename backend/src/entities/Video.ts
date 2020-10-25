@@ -1,11 +1,19 @@
 import { ObjectType, Field, Int } from "type-graphql";
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryColumn,
+} from "typeorm";
+import { Image } from "./Image";
 
 @ObjectType()
 @Entity()
 export class Video extends BaseEntity {
   @Field()
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id!: number;
 
   @Field()
@@ -38,7 +46,7 @@ export class Video extends BaseEntity {
 
   @Field(() => String, { nullable: true })
   @Column()
-  original_title!: string;
+  original_title?: string;
 
   @Field(() => String, { nullable: true })
   @Column()
@@ -51,4 +59,9 @@ export class Video extends BaseEntity {
   @Field(() => String, { nullable: true })
   @Column()
   synopsis?: string;
+
+  @Field({ nullable: true })
+  @OneToOne(() => Image, { nullable: true })
+  @JoinColumn()
+  image?: Image;
 }

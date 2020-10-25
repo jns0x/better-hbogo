@@ -7,6 +7,7 @@ import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 import { Video } from "./entities/Video";
 import { VideoResolver } from "./resolvers/video";
+import { Image } from "./entities/Image";
 
 const main = async () => {
   const connection = await createConnection({
@@ -18,7 +19,7 @@ const main = async () => {
     logging: true,
     // synchronize: true,
     //   migrations: [path.join(__dirname, "./migrations/*")],
-    entities: [Video],
+    entities: [Video, Image],
   });
   await connection.runMigrations();
 
