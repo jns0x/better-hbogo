@@ -98,6 +98,10 @@ export type VideosQuery = (
     & { videos: Array<(
       { __typename?: 'Video' }
       & Pick<Video, 'id' | 'external_id' | 'imageId' | 'title' | 'year' | 'type' | 'engTitle' | 'original_title' | 'imdb_rate' | 'age_rate' | 'synopsis'>
+      & { image?: Maybe<(
+        { __typename?: 'Image' }
+        & Pick<Image, 'img_190' | 'img_262' | 'img_561' | 'img_800' | 'img_1080' | 'img_1280'>
+      )> }
     )> }
   ) }
 );
@@ -118,6 +122,14 @@ export const VideosDocument = gql`
       imdb_rate
       age_rate
       synopsis
+      image {
+        img_190
+        img_262
+        img_561
+        img_800
+        img_1080
+        img_1280
+      }
     }
   }
 }

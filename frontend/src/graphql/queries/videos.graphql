@@ -31,6 +31,14 @@ query Videos(
       imdb_rate
       age_rate
       synopsis
+      image {
+        img_190
+        img_262
+        img_561
+        img_800
+        img_1080
+        img_1280
+      }
     }
   }
 }

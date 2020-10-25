@@ -5,13 +5,13 @@ import Card from "components/card/Card";
 import Layout from "containers/layout/layout";
 import { css } from "styled-components";
 import story from "fixtures/story.json";
+import Shelf from "components/shelf/Shelf";
 
 // import { withApollo } from "lib/withApollo";
 
 const Index = () => {
-  const { data } = useVideosQuery();
-
-  console.log(data);
+  const { data, loading } = useVideosQuery();
+  console.log(data && data.videos);
   return (
     <Layout>
       <Jumbotron
@@ -41,6 +41,26 @@ const Index = () => {
             </Card.Item>
           ))}
         </Card>
+        <Shelf>
+          <Shelf.ShelfHeader>Top Series</Shelf.ShelfHeader>
+          <Shelf.ShelfContainerRow>
+            <Shelf.ShelfSlider>
+              {data &&
+                data.videos.videos.map((video) => (
+                  <Shelf.ShelfItem key={video.id}>
+                    <Shelf.ShelfItemImage
+                      src={video.image?.img_190}
+                      height="190"
+                    />
+                    <Shelf.ShelfItemTrackContent>
+                      {video.title}
+                      {video.year}
+                    </Shelf.ShelfItemTrackContent>
+                  </Shelf.ShelfItem>
+                ))}
+            </Shelf.ShelfSlider>
+          </Shelf.ShelfContainerRow>
+        </Shelf>
       </main>
     </Layout>
   );
