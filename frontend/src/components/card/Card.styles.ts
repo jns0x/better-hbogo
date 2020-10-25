@@ -11,13 +11,13 @@ export const Container = styled.div`
   }
 `;
 
-export const Item = styled.div`
+export const ItemStyled = styled.div`
   /* padding: 20px; */
   padding: 2.5vw;
   width: 100%;
 `;
 
-export const Title1 = styled.h1`
+export const Title1Styled = styled.h1`
   /* font-size: 36px; */
   /* font-size: calc(30px + 1vw); */
   font-size: max(2vw, 36px);
@@ -25,7 +25,7 @@ export const Title1 = styled.h1`
   font-weight: 300;
 `;
 
-export const Subtitle1 = styled.p`
+export const Subtitle1Styled = styled.p`
   width: 100%;
   display: inline-block;
   margin: 10px 0;
@@ -33,7 +33,7 @@ export const Subtitle1 = styled.p`
   font-size: calc(18px + 0.5vw);
 `;
 
-export const Title2 = styled.h2`
+export const Title2Styled = styled.h2`
   /* font-size: 24px; */
   font-size: calc(24px + 0.2vw);
 
@@ -42,18 +42,18 @@ export const Title2 = styled.h2`
   white-space: pre-wrap;
 `;
 
-export const Subtitle2 = styled.p`
+export const Subtitle2Styled = styled.p`
   width: 100%;
   display: inline-block;
   font-size: calc(13px + 0.2vw);
   margin-top: 10px;
   white-space: pre-wrap;
 `;
-export const ButtonBig = styled(Button)`
+export const ButtonBigStyled = styled(Button)`
   font-size: 20px;
   border-radius: 6px;
   padding: 13px 30px;
   margin-top: 10px;
 `;
 
-export const Row = styled.div``;
+export const RowStyled = styled.div``;

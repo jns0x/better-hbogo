@@ -1,7 +1,8 @@
 import React from "react";
 import { StyledButton } from "./button.styles";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: string;
   variant?: "solid" | "outline";
   color?: "default" | "orange" | "blue";

@@ -1,62 +1,64 @@
 import React, { ReactNode } from "react";
 import {
-  ButtonBig,
+  ButtonBigStyled,
   Container,
-  Item,
-  Row,
-  Subtitle1,
-  Subtitle2,
-  Title1,
-  Title2,
+  ItemStyled,
+  RowStyled,
+  Subtitle1Styled,
+  Subtitle2Styled,
+  Title1Styled,
+  Title2Styled,
 } from "./Card.styles";
-// import Button from "components/button/button"
+import { ButtonProps } from "components/button/button";
 
-interface Props extends React.ReactElement {
-  children?: ReactNode;
+interface ICardComposition {
+  Item: React.FC;
+  Title1: React.FC;
+  Subtitle1: React.FC;
+  ButtonBig: React.FC<ButtonProps>;
+  Title2: React.FC;
+  Subtitle2: React.FC;
+  Row: React.FC;
 }
 
-export default function Card({ children, ...props }: Props) {
+const Card: React.FC & ICardComposition = ({ children, ...props }) => {
   return <Container {...props}>{children}</Container>;
-}
-
-Card.Item = function CardItem({ children, ...props }: Props) {
-  return <Item {...props}>{children}</Item>;
 };
 
-Card.Title1 = function CardTitle({ children, ...props }: Props) {
-  return <Title1 {...props}>{children}</Title1>;
+const Item: React.FC = ({ children, ...props }) => {
+  return <ItemStyled {...props}>{children}</ItemStyled>;
 };
 
-Card.Subtitle1 = function CardSubtitle({ children, ...props }: Props) {
-  return <Subtitle1 {...props}>{children}</Subtitle1>;
+const Title1: React.FC = ({ children, ...props }) => {
+  return <Title1Styled {...props}>{children}</Title1Styled>;
 };
 
-Card.ButtonBig = function CardButtonBig({ children, ...props }: Props) {
-  return <ButtonBig {...props}>{children}</ButtonBig>;
+const Subtitle1: React.FC = ({ children, ...props }) => {
+  return <Subtitle1Styled {...props}>{children}</Subtitle1Styled>;
 };
 
-Card.Title2 = function CardTitle({ children, ...props }: Props) {
-  return <Title2 {...props}>{children}</Title2>;
+const ButtonBig: React.FC<ButtonProps> = ({ children, ...props }) => {
+  return <ButtonBigStyled {...props}>{children}</ButtonBigStyled>;
 };
 
-Card.Subtitle2 = function CardSubtitle({ children, ...props }: Props) {
-  return <Subtitle2 {...props}>{children}</Subtitle2>;
+const Title2: React.FC = ({ children, ...props }) => {
+  return <Title2Styled {...props}>{children}</Title2Styled>;
 };
 
-Card.Row = function CardRow({ children, ...props }: Props) {
-  return <Row {...props}>{children}</Row>;
+const Subtitle2: React.FC = ({ children, ...props }) => {
+  return <Subtitle2Styled {...props}>{children}</Subtitle2Styled>;
 };
 
-// const Card: React.FC = ({ children, ...props }) => {
-//   return <Container {...props}>{children}</Container>;
-// };
+const Row: React.FC = ({ children, ...props }) => {
+  return <RowStyled {...props}>{children}</RowStyled>;
+};
 
-// Card.Item: React.FC = ({ children, ...props }) => {
-//   return <Item {...props}>{children}</Item>;
-// };
+Card.Item = Item;
+Card.Title1 = Title1;
+Card.Subtitle1 = Subtitle1;
+Card.ButtonBig = ButtonBig;
+Card.Title2 = Title2;
+Card.Subtitle2 = Subtitle2;
+Card.Row = Row;
 
-// Card.Heading: React.FC = ({ children, ...props }) => {
-//     return <Heading {...props}>{children}</Heading>;
-//   };
-
-// export default Card;
+export default Card;
