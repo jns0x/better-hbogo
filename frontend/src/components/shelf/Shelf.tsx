@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useContext, useState } from "react";
 import {
   ShelfRow,
   Header,
@@ -8,7 +8,22 @@ import {
   Item,
   Image,
   SliderHandle,
+  TrackContent,
+  TrackContentSynopsis,
+  TrackContentMeta,
+  TrackContentMetaYear,
+  TrackContentMetaGenre,
 } from "./Shelf.styles";
+
+type IShelfContext = {
+  shelfHover: boolean;
+  setShelfHover: (param: boolean) => void;
+};
+
+type IItemContext = {
+  itemHover: boolean;
+  setItemHover: (param: boolean) => void;
+};
 
 interface IShelfComposition {
   ShelfHeader: React.FC;
@@ -20,8 +35,17 @@ interface IShelfComposition {
   ShelfItemTrackContent: React.FC;
 }
 
+const ShelfContext = createContext<IShelfContext>({});
+const ItemContext = createContext<IItemContext>({});
+
 const Shelf: React.FC & IShelfComposition = ({ children, ...props }) => {
-  return <ShelfRow {...props}>{children}</ShelfRow>;
+  const [shelfHover, setShelfHover] = useState(false);
+
+  return (
+    <ShelfContext.Provider value={{ shelfHover, setShelfHover }}>
+      <ShelfRow {...props}>{children}</ShelfRow>
+    </ShelfContext.Provider>
+  );
 };
 
 const ShelfHeader: React.FC = ({ children, ...props }) => {
@@ -46,15 +70,70 @@ const ShelfSliderMask: React.FC = ({ children, ...props }) => {
 };
 
 const ShelfItem: React.FC = ({ children, ...props }) => {
-  return <Item {...props}>{children}</Item>;
+  const [itemHover, setItemHover] = useState(false);
+  const { setShelfHover } = useContext(ShelfContext);
+  return (
+    <ItemContext.Provider value={{ itemHover, setItemHover }}>
+      <Item
+        itemHover={itemHover}
+        onMouseEnter={() => {
+          setItemHover(true);
+          setShelfHover(true);
+        }}
+        onMouseLeave={() => {
+          setItemHover(false);
+          setShelfHover(false);
+        }}
+        {...props}
+      >
+        {children}
+      </Item>
+    </ItemContext.Provider>
+  );
 };
 
 const ShelfItemImage: React.FC = ({ children, ...props }) => {
-  return <Image {...props}>{children}</Image>;
+  const { setShelfHover } = useContext(ShelfContext);
+  return (
+    <Image
+      onMouseEnter={() => {
+        setShelfHover(true);
+      }}
+      onMouseLeave={() => {
+        setShelfHover(false);
+      }}
+      {...props}
+    >
+      {children}
+    </Image>
+  );
 };
 
-const ShelfItemTrackContent: React.FC = ({ children, ...props }) => {
-  return <div {...props}>{children}</div>;
+const ShelfItemTrackContent: React.FC = ({
+  children,
+  synopsis,
+  year,
+  genre,
+  ...props
+}) => {
+  const { itemHover, setItemHover } = useContext(ItemContext);
+  console.log(itemHover);
+  return (
+    <TrackContent
+      itemHover={itemHover}
+      onMouseEnter={() => setItemHover(true)}
+      onMouseLeave={() => setItemHover(false)}
+      {...props}
+    >
+      <TrackContentMeta>
+        <TrackContentSynopsis>{synopsis}</TrackContentSynopsis>
+      </TrackContentMeta>
+      <TrackContentMeta>
+        <TrackContentMetaYear>{year}</TrackContentMetaYear>
+        <TrackContentMetaGenre>{genre}</TrackContentMetaGenre>
+      </TrackContentMeta>
+    </TrackContent>
+  );
 };
 
 // const ShelfSliderHandle: React.FC = ({ children, ...props }) => {

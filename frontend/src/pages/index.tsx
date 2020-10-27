@@ -17,7 +17,7 @@ const Index = () => {
   return (
     <Layout>
       <Jumbotron
-        image="//hboeu.azureedge.net/uiimages/D81AB68F-B36E-4F08-9440-C343708D1D67/original.jpg"
+        image="//hboeu.azureedge.net/uiimages/B0F66098-6104-484C-913A-8114298C84D7/original.jpg"
         mt
       />
       <main>
@@ -54,9 +54,11 @@ const Index = () => {
                       src={video.image?.img_190}
                       // height="190"
                     />
-                    <Shelf.ShelfItemTrackContent>
-                      {video.title}
-                      {video.year}
+                    <Shelf.ShelfItemTrackContent
+                      synopsis={video.synopsis}
+                      year={video.year}
+                    >
+                      {/* {video.title} */}
                     </Shelf.ShelfItemTrackContent>
                   </Shelf.ShelfItem>
                 ))}
