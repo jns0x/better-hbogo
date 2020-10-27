@@ -8,6 +8,8 @@ import { createConnection } from "typeorm";
 import { Video } from "./entities/Video";
 import { VideoResolver } from "./resolvers/video";
 import { Image } from "./entities/Image";
+import { MovieGenre } from "./entities/MovieGenre";
+import { Genre } from "./entities/Genre";
 
 const main = async () => {
   const connection = await createConnection({
@@ -19,7 +21,7 @@ const main = async () => {
     logging: true,
     // synchronize: true,
     //   migrations: [path.join(__dirname, "./migrations/*")],
-    entities: [Video, Image],
+    entities: [Video, Image, Genre, MovieGenre],
   });
   await connection.runMigrations();
 

@@ -4,10 +4,12 @@ import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryColumn,
 } from "typeorm";
 import { Image } from "./Image";
+import { MovieGenre } from "./MovieGenre";
 
 @ObjectType()
 @Entity()
@@ -62,6 +64,18 @@ export class Video extends BaseEntity {
 
   @Field({ nullable: true })
   @OneToOne(() => Image, { nullable: true })
-  @JoinColumn()
+  @JoinColumn({
+    name: "imageId",
+    referencedColumnName: "id",
+  })
   image?: Image;
+
+  @Field(() => [MovieGenre], { nullable: true })
+  @OneToMany(() => MovieGenre, (movieGenre) => movieGenre.genre)
+  // @OneToOne(() => MovieGenre, { nullable: true })
+  @JoinColumn({
+    name: "id",
+    referencedColumnName: "movieId",
+  })
+  genres?: MovieGenre[];
 }

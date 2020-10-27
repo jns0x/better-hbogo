@@ -1,15 +1,7 @@
 // import original module declarations
 import "styled-components";
+import { CSSProp } from "styled-components";
 import type {} from "styled-components/cssprop";
-// and extend them!
-// import * as types from "styled-components/cssprop";
-
-// Add support for css prop
-// declare namespace React {
-//   interface DOMAttributes<T> {
-//     css?: any;
-//   }
-// }
 
 type Colors =
   | "white"
@@ -49,5 +41,6 @@ declare module "styled-components" {
         hover: string;
       };
     };
+    generalPadding: CSSProp;
   }
 }

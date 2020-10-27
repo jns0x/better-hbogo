@@ -68,7 +68,6 @@ export class VideoResolver {
       orderBy,
       order,
       limit,
-      cursor,
     }: Filters
   ) {
     const realLimit = Math.min(limit);
@@ -77,6 +76,8 @@ export class VideoResolver {
     const videos = await getRepository(Video)
       .createQueryBuilder("video")
       .leftJoinAndSelect("video.image", "image")
+      // .leftJoinAndSelect("video.genres", "genres")
+      // .relation(MovieGenre, "genres")
       .where({ type });
 
     if (imdb_rate) {
@@ -105,6 +106,35 @@ export class VideoResolver {
       hasMore: videosResult.length === reaLimitPlusOne,
     };
   }
+  @Query(() => PaginatedVideos)
+  async videosWithRelations(
+    @Args()
+    {
+      // type,
+      // year,
+      // imdb_rate,
+      // age_rate,
+      // availableDate,
+      // orderBy,
+      // order,
+      limit,
+    }: Filters
+  ) {
+    const realLimit = Math.min(limit);
+    const reaLimitPlusOne = realLimit + 1;
+
+    const videos = await Video.find({
+      relations: ["image", "genres"],
+    });
+
+    // const videosResult = await videos.getMany({});
+
+    return {
+      videos,
+      hasMore: videos.length === reaLimitPlusOne,
+    };
+  }
+
   @Query(() => Video, { nullable: true })
   video(@Arg("id", () => Int) id: number): Promise<Video | undefined> {
     return Video.findOne(id);
@@ -124,6 +154,7 @@ export class VideoResolver {
     return series;
   }
   async movies() {
+    ``;
     const movies = await getRepository(Video)
       .createQueryBuilder("video")
       .where("video.type = : type", { type: "movie" })

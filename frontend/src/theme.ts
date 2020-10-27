@@ -1,4 +1,4 @@
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme, css } from "styled-components";
 
 const colors = {
   white: "#fff",
@@ -11,6 +11,13 @@ const colors = {
   lightBlue: "#0091ea",
   transparent: "transparent",
 };
+
+const generalPadding = css`
+  padding: 0 4%;
+  @media screen and (min-width: 1500px) {
+    padding: 0 60px;
+  }
+`;
 
 export const darkTheme: DefaultTheme = {
   colors,
@@ -38,4 +45,5 @@ export const darkTheme: DefaultTheme = {
       hover: colors.lightBlue,
     },
   },
+  generalPadding,
 };

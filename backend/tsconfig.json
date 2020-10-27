@@ -21,8 +21,8 @@
     "esModuleInterop": true,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": true
   },
-  "exclude": ["node_modules"],
-  "include": ["src", "node_modules/puppeteer-tsd/src/index.d.ts"]
+  "include": ["src", "node_modules/puppeteer-tsd/src/index.d.ts"],
+  "exclude": ["node_modules"]
 }

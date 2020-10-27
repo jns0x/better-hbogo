@@ -7,6 +7,7 @@ import {
   Mask,
   Item,
   Image,
+  SliderHandle,
 } from "./Shelf.styles";
 
 interface IShelfComposition {
@@ -32,7 +33,12 @@ const ShelfContainerRow: React.FC = ({ children, ...props }) => {
 };
 
 const ShelfSlider: React.FC = ({ children, ...props }) => {
-  return <Slider {...props}>{children}</Slider>;
+  return (
+    <>
+      <Slider {...props}>{children}</Slider>
+      <SliderHandle />
+    </>
+  );
 };
 
 const ShelfSliderMask: React.FC = ({ children, ...props }) => {
@@ -51,6 +57,10 @@ const ShelfItemTrackContent: React.FC = ({ children, ...props }) => {
   return <div {...props}>{children}</div>;
 };
 
+// const ShelfSliderHandle: React.FC = ({ children, ...props }) => {
+//   return <div {...props}>{children}</div>;
+// };
+
 Shelf.ShelfHeader = ShelfHeader;
 Shelf.ShelfContainerRow = ShelfContainerRow;
 Shelf.ShelfSlider = ShelfSlider;
@@ -58,5 +68,6 @@ Shelf.ShelfSliderMask = ShelfSliderMask;
 Shelf.ShelfItem = ShelfItem;
 Shelf.ShelfItemImage = ShelfItemImage;
 Shelf.ShelfItemTrackContent = ShelfItemTrackContent;
+// Shelf.ShelfSliderHandle = ShelfItemTrackContent;
 
 export default Shelf;

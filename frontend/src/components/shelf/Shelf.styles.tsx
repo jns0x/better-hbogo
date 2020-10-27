@@ -1,9 +1,5 @@
 import styled, { css } from "styled-components";
 
-const maxWidth = css`
-  padding: 0 60px;
-`;
-
 export const ShelfRow = styled.div`
   margin: 3vw 0;
   padding: 0;
@@ -14,13 +10,16 @@ export const Header = styled.h2`
   font-weight: 300;
   margin: 0;
   font-size: 24px;
-  ${maxWidth}
+  ${({ theme }) => theme.generalPadding};
 `;
 
-export const ContainerRow = styled.div``;
+export const ContainerRow = styled.div`
+  position: relative;
+  ${({ theme }) => theme.generalPadding};
+`;
 
 export const Slider = styled.div`
-  ${maxWidth}
+  white-space: nowrap;
 `;
 
 export const Mask = styled.div`
@@ -28,7 +27,7 @@ export const Mask = styled.div`
 `;
 
 export const Item = styled.div`
-  width: 16.66666667%;
+  width: 10%;
   box-sizing: border-box;
   z-index: 1;
   display: inline-block;
@@ -40,4 +39,17 @@ export const Item = styled.div`
 
 export const Image = styled.img`
   width: 100%;
+  height: auto;
+`;
+
+export const SliderHandle = styled.span`
+  background: rgba(20, 20, 20, 0.5);
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 20;
+  width: 4%;
+  text-align: center;
+  -webkit-box-pack: center;
 `;

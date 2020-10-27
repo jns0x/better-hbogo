@@ -4,11 +4,11 @@ import React from "react";
 
 const Layout: React.FC = ({ children }) => {
   return (
-    <>
+    <div style={{ overflow: "hidden" }}>
       <Header />
       {children}
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -10,7 +10,9 @@ import Shelf from "components/shelf/Shelf";
 // import { withApollo } from "lib/withApollo";
 
 const Index = () => {
-  const { data, loading } = useVideosQuery();
+  const { data, loading } = useVideosQuery({
+    variables: { limit: 20 },
+  });
   console.log(data && data.videos);
   return (
     <Layout>
@@ -50,7 +52,7 @@ const Index = () => {
                   <Shelf.ShelfItem key={video.id}>
                     <Shelf.ShelfItemImage
                       src={video.image?.img_190}
-                      height="190"
+                      // height="190"
                     />
                     <Shelf.ShelfItemTrackContent>
                       {video.title}
